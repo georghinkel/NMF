@@ -80,5 +80,13 @@ namespace Editor
             repository.Models.Add(new Uri($"temp:newModel{modelCounter++}"), model);
             Tree.RootElement = ns;
         }
+
+        private void Tree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Tree.SelectedItem is INamespace ns)
+            {
+                Diagram.LoadRoot(ns);
+            }
+        }
     }
 }

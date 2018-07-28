@@ -4,26 +4,67 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:NMF.Controls;assembly=NMF.Controls"
+        xmlns:diagrams="clr-namespace:NMF.Controls.Diagrams;assembly=NMF.Controls"
         xmlns:context="clr-namespace:NMF.Controls.ContextMenu;assembly=NMF.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
         <ContentControl Content="{StaticResource MyToolbar}" Grid.ColumnSpan="2"/>
 
-        <controls:TreeEditor Grid.Column="0" Grid.Row="1" Name="Tree">
-        </controls:TreeEditor>
+        <TabControl Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
+            <TabItem Header="Tree">
+                <controls:TreeEditor Name="Tree" TreeView.SelectedItemChanged="Tree_SelectedItemChanged">
+                </controls:TreeEditor>
+            </TabItem>
+            <TabItem Header="ToolBox">
+                <Expander Header="Stencils">
+                    
+                </Expander>
+            </TabItem>
+        </TabControl>
 
-        <controls:PropertyView Grid.Column="1" Grid.Row="1" Name="Properties" SelectedObject="{Binding ElementName=Tree, Path=SelectedItem}">
-            
+        <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <diagrams:DesignerCanvas Name="Diagram">
+                <diagrams:DesignerCanvas.NodeGroups>
+                    <diagrams:NodeGroup Source="{Binding Types}">
+                        <diagrams:NodeGroup.Template>
+                            <DataTemplate>
+                                <Grid>
+                                    <Rectangle Width="Auto" Height="Auto" />
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock TextAlignment="Center" FontWeight="Bold" Text="{Binding Name}" />
+                                        
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </diagrams:NodeGroup.Template>
+                        <diagrams:NodeGroup.EdgeGroups>
+                            <diagrams:EdgeGroup Source="{Binding BaseTypes}">
+                                <diagrams:EdgeGroup.Template>
+                                    <DataTemplate>
+                                        <diagrams:Connector />
+                                    </DataTemplate>
+                                </diagrams:EdgeGroup.Template>
+                            </diagrams:EdgeGroup>
+                        </diagrams:NodeGroup.EdgeGroups>
+                    </diagrams:NodeGroup>
+                </diagrams:DesignerCanvas.NodeGroups>
+            </diagrams:DesignerCanvas>
+        </ScrollViewer>
+        <controls:PropertyView Grid.Column="1" Grid.Row="2" Name="Properties" SelectedObject="{Binding ElementName=Tree, Path=SelectedItem}">
+
         </controls:PropertyView>
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.RowSpan="2" Width="2" />
+        <GridSplitter Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="2" />
     </Grid>
 </Window>

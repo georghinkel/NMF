@@ -70,6 +70,28 @@
     <Compile Include="ContextMenu\AddChildMenuItem.cs" />
     <Compile Include="Converters\CollectionConverter.cs" />
     <Compile Include="Converters\TypeInstanceConverter.cs" />
+    <Compile Include="Diagrams\Connection.cs" />
+    <Compile Include="Diagrams\ConnectionAdorner.cs" />
+    <Compile Include="Diagrams\Connector.cs" />
+    <Compile Include="Diagrams\ConnectorAdorner.cs" />
+    <Compile Include="Diagrams\DesignerCanvas.Commands.cs" />
+    <Compile Include="Diagrams\DesignerCanvas.xaml.cs">
+      <DependentUpon>DesignerCanvas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagrams\DesignerItem.cs" />
+    <Compile Include="Diagrams\DragThumb.cs" />
+    <Compile Include="Diagrams\EdgeGroup.cs" />
+    <Compile Include="Diagrams\IGroupable.cs" />
+    <Compile Include="Diagrams\ISelectable.cs" />
+    <Compile Include="Diagrams\MoveThumb.cs" />
+    <Compile Include="Diagrams\NodeGroup.cs" />
+    <Compile Include="Diagrams\PathFinder.cs" />
+    <Compile Include="Diagrams\RelativePositionPanel.cs" />
+    <Compile Include="Diagrams\ResizeThumb.cs" />
+    <Compile Include="Diagrams\RubberbandAdorner.cs" />
+    <Compile Include="Diagrams\SelectionService.cs" />
+    <Compile Include="Diagrams\Toolbox.cs" />
+    <Compile Include="Diagrams\ToolboxItem.cs" />
     <Compile Include="ModelTemplates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -105,6 +127,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Diagrams\DesignerCanvas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ModelTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,6 +138,14 @@
     <Page Include="PropertyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Connection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\DesignerItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="TreeEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
